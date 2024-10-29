@@ -56,18 +56,18 @@
                                     %>
                                     <g:set var="subId" value="${pRule.subId}"/>
                                     <g:link action="show" id="${rule.id}"
-                                            params="[lang:params.lang, subId: subId]">${rule.description ? StringTools.escapeHtmlAndHighlightMatches(rule.description, params.filter) : "[unnamed]"}</g:link>
+                                            params="[lang:params.lang, subId: subId]">${raw(rule.description ? StringTools.escapeHtmlAndHighlightMatches(rule.description, params.filter) : "[unnamed]")}</g:link>
                                 </g:if>
                                 <g:else>
                                     <g:link action="show" id="${rule.id}"
-                                            params="[lang:params.lang]">${rule.description ? StringTools.escapeHtmlAndHighlightMatches(rule.description, params.filter) : "[unnamed]"}</g:link>
+                                            params="[lang:params.lang]">${raw(rule.description ? StringTools.escapeHtmlAndHighlightMatches(rule.description, params.filter) : "[unnamed]")}</g:link>
                                 </g:else>
                             </td>
 
                             <td>
                                 <g:if test="${rule.getIncorrectExamples()?.size() > 0}">
-                                    ${rule.getIncorrectExamples().get(0).example.encodeAsHTML()
-                                            .replace("&lt;marker&gt;", "<span class='errorlight'>").replace("&lt;/marker&gt;", "</span>")}
+                                    ${raw(rule.getIncorrectExamples().get(0).example.encodeAsHTML()
+                                            .replace("&lt;marker&gt;", "<span class='errorlight'>").replace("&lt;/marker&gt;", "</span>"))}
                                 </g:if>
                             </td>
 
@@ -75,7 +75,7 @@
                                 <%
                                 String categoryName = categoryName = StringTools.escapeHtmlAndHighlightMatches(rule.category.name, params.filter);
                                 %>
-                                ${categoryName}
+                                ${raw(categoryName)}
                             </td>
                         
                         </tr>

@@ -97,7 +97,7 @@ input:focus, select:focus, textarea:focus {
 /* MESSAGES AND ERRORS */
 
 .message {
-    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    background: #f3f8fc url(/assets/skin/information.png) 8px 50% no-repeat;
     border: 1px solid #b2d1ff;
     color: #006dba;
     margin: 10px 0 5px 0;
@@ -124,7 +124,7 @@ div.errors ul {
     padding: 0;
 }
 div.errors li {
-    background: url(../images/skin/exclamation.png) 8px 0% no-repeat;
+    background: url(/assets/skin/exclamation.png) 8px 0% no-repeat;
     line-height: 16px;
     padding-left: 30px;
 }
@@ -157,7 +157,7 @@ td, th {
     vertical-align: top;
 }
 th {
-    background: #fff url(../images/skin/shadow.jpg);
+    background: #fff url(/assets/skin/shadow.jpg);
     color: #666;
     font-size: 12px;
     font-weight: bold;
@@ -176,10 +176,10 @@ th.asc a, th.desc a {
     background-repeat: no-repeat;
 }
 th.asc a {
-    background-image: url(../images/skin/sorted_asc.gif);
+    background-image: url(/assets/skin/sorted_asc.gif);
 }
 th.desc a {
-    background-image: url(../images/skin/sorted_desc.gif);
+    background-image: url(/assets/skin/sorted_desc.gif);
 }
 
 .odd {
@@ -201,7 +201,7 @@ th.desc a {
 /* PAGINATION */
 
 .paginateButtons {
-    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
+    background: #fff url(/assets/skin/shadow.jpg) bottom repeat-x;
     border: 1px solid #ccc;
     border-top: 0;
     color: #666;
@@ -284,7 +284,7 @@ th.desc a {
     padding-left: 2px;
     padding-right: 2px;
     padding-bottom: 2px;
-    background-image: url("../images/squiggle.png");
+    background-image: url("/assets/squiggle.png");
     background-repeat: repeat-x;
     background-position: left bottom;
 }
@@ -292,7 +292,7 @@ th.desc a {
     padding-left: 2px;
     padding-right: 2px;
     padding-bottom: 2px;
-    background-image: url("../images/squiggle.png");
+    background-image: url("/assets/squiggle.png");
     background-repeat: repeat-x;
     background-position: left bottom;
 }
@@ -301,7 +301,7 @@ th.desc a {
     padding-left: 2px;
     padding-right: 2px;
     padding-bottom: 2px;
-    background-image: url("../images/squiggle_red.png");
+    background-image: url("/assets/squiggle_red.png");
     background-repeat: repeat-x;
     background-position: left bottom;
     vertical-align: text-top;

@@ -69,7 +69,7 @@
                 <g:if test="${rule instanceof PatternRule}">
                     <tr>
                         <td><g:message code="ltc.rule.show.message" /></td>
-                        <td>${org.languagetool.StringTools.formatError(rule.message.encodeAsHTML())}</td>
+                        <td>${org.languagetool.StringTools.formatError(rule.message)}</td>
                     </tr>
                 </g:if>
                 <tr>
@@ -104,9 +104,9 @@
                     <td>
                         <ul>
                             <g:each var="example" in="${rule.getIncorrectExamples()}">
-                                <li>${example.getExample().encodeAsHTML().
-                                        replace("&lt;marker&gt;", '<span class="error">').
-                                        replace("&lt;/marker&gt;", '</span>')
+                                <li>${raw(example.getExample().
+                                        replace("<marker>", '<span class="error">').
+                                        replace("</marker>", '</span>'))
                                     }
                                     <g:if test="${example.getCorrections().size() > 0 && !example.getCorrections().get(0).isEmpty()}">
                                         <div style="margin-top: 5px">
@@ -129,15 +129,16 @@
                         <td>
                             <ul>
                                 <g:each var="example" in="${rule.getCorrectExamples()}">
-                                    <li>${example.encodeAsHTML().
-                                            replace("&lt;marker&gt;", '<b>').
-                                            replace("&lt;/marker&gt;", '</b>')}</li>
+                                    <li>${raw(example.toString().
+                                            replace("<marker>", '<b>').
+                                            replace("</marker>", '</b>'))}</li>
                                 </g:each>
                             </ul>
                         </td>
                     </tr>
                 </g:if>
 
+                <!--
                 <tr>
                     <td><g:message code="ltc.rule.show.pattern" /></td>
                     <td>
@@ -157,7 +158,7 @@
                             <span class="javaRule"><g:message code="ltc.rule.show.java.rule" /></span>
                             <g:if test="${rule.class.getName().contains('.' + langCode  + '.')}">
                             <%-- language-specific rule --%>
-                                <a href="https://github.com/languagetool-org/languagetool/blob/master/languagetool-language-modules/${langCode.encodeAsHTML()}/src/main/java/${rule.class.getName().replace(".", "/")}.java">Sourcecode</a>
+                                <a href="https://github.com/languagetool-org/languagetool/blob/master/languagetool-language-modules/${langCode}/src/main/java/${rule.class.getName().replace(".", "/")}.java">Sourcecode</a>
                             </g:if>
                             <g:else>
                             <%-- generic rule --%>
@@ -167,21 +168,9 @@
                         </g:else>
                     </td>
                 </tr>
-
-                <!--
-                <tr>
-                    <td><g:message code="ltc.rule.show.wikipedia" /></td>
-                    <td>
-                        <g:if test="${corpusMatchCount > 0}">
-                            <g:link controller="corpusMatch" action="list" params="${[lang: params.lang, filter: ruleId]}"><g:message code="ltc.rule.show.corpus.link" args="${[corpusMatchCount]}"/></g:link>
-                        </g:if>
-                        <g:else>
-                            <g:link controller="corpusMatch" action="list" params="${[lang: params.lang]}"><g:message code="ltc.rule.show.corpus.link" args="${[corpusMatchCount]}"/></g:link>
-                        </g:else>
-                    </td>
-                </tr>
                 -->
 
+                <!--
                 <tr>
                     <td>
                         <g:message code="ltc.rule.show.check.text" />
@@ -204,6 +193,7 @@
                         </g:if>
                     </td>
                 </tr>
+                -->
 
                 <tr class="additional">
                     <td><g:message code="ltc.rule.show.id" /></td>
