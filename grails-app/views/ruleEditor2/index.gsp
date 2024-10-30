@@ -11,10 +11,10 @@
     <title><g:message code="ltc.editor.title"/></title>
     <script>
         // used in *.js as GSP doesn't get evaluated there:
-        var __ruleEditorEvaluationUrl = '${resource(dir: 'ruleEditor', file: 'checkXml')}';
-        var __ruleEditorTokenizeSentencesUrl = '${resource(dir: 'analysis', file: 'tokenizeSentences')}';
-        var __ruleEditorSentenceAnalysisUrl = '${resource(dir: 'analysis', file: 'analyzeTextForEmbedding')}';
-        var __ruleEditorPosInfoUrl = '${resource(dir: 'ruleEditor2', file: 'posTagInformation')}';
+        var __ruleEditorEvaluationUrl = '/ruleEditor/checkXml';
+        var __ruleEditorTokenizeSentencesUrl = '/analysis/tokenizeSentences';
+        var __ruleEditorSentenceAnalysisUrl = '/analysis/analyzeTextForEmbedding';
+        var __ruleEditorPosInfoUrl = '/ruleEditor2/posTagInformation';
         var __ruleEditorXml = '${ruleXml.replace("'", "&apos;")}';
     </script>
     <script>
@@ -93,12 +93,14 @@
               </td>
           </tr>
 
+        <!--
           <tr ng-cloak ng-show="language.code === 'en' || language.code === 'de'">
               <td></td>
               <td>
                   <a ng-href="examples?lang={{language.code}}">Need a starting point? Click here to see some incorrect sentences</a> 
               </td>
           </tr>
+          -->
 
           <tr ng-repeat="exampleSentence in exampleSentences">
               <td><label ng-cloak>{{exampleSentence.type}} sentence:</label></td>

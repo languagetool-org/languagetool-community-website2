@@ -19,6 +19,7 @@
 package languagetool.community.website2
 
 import org.languagetool.*
+import grails.converters.JSON
 
 /**
  * Showing LanguageTool's text analysis for debugging.
@@ -61,11 +62,12 @@ class AnalysisController {
                     model: [matches: ruleMatches, textToCheck: params.sentence1, hideRuleLink: true])
         }
         List<String> tokens2 = getTokens(params.sentence2, lt)
-        render(contentType: "text/json") {[
+        def result = [
             'sentence1': tokens1,
             'sentence1Matches': ruleMatchesHtml,
             'sentence2': tokens2
-        ]}
+        ]
+        render result as JSON
     }
 
     private List<String> getTokens(String text, JLanguageTool lt) {
