@@ -96,7 +96,7 @@
                                             pos += token.getToken().length();
                                         %>
                                     </g:each>
-                                    ${StringUtils.join(spanList, '')}
+                                    ${raw(StringUtils.join(spanList, ''))}
                                     <span class="metaInfo">
                                     <g:if test="${matchingSentence.getSource()}">
                                         <g:if test="${matchingSentence.getSource().indexOf('http') == 0}">
@@ -145,6 +145,7 @@
 
     </g:else>
     
+    <%-- submitToRemote not supported anymore in Grails 6.2:
     <g:if test="${!params.showMatchesOnly && docsChecked < maxDocs}">
         <div style="margin-left:150px">
             <g:submitToRemote name="checkXmlButton3"
@@ -155,6 +156,7 @@
                               value="Search more..."/>
         </div>
     </g:if>
+    --%>
 
 
 </g:if>

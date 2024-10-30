@@ -40,7 +40,7 @@
 
   <span style="color: white;float:left">LanguageTool ${JLanguageTool.VERSION} (${JLanguageTool.BUILD_DATE})</span>
   <p style="margin:15px;float:right;width:700px"><a href ng-click="gui.parseXmlDialogShown = true">Parse existing XML</a>
-  &middot; <g:link controller="ruleEditor" action="expert">Expert Mode</g:link></p>
+  <!--&middot; <g:link controller="ruleEditor" action="expert">Expert Mode</g:link>--></p>
   <modal-dialog show='gui.parseXmlDialogShown' dialog-title='Parse Rule XML' ng-cloak>
     <form>
         <b>Note:</b> this feature is still a bit incomplete<br/>
@@ -457,7 +457,7 @@
               that the developers will use to integrate your rule. If you think your rule might be
               useful to other users of LanguageTool, and if all the checks under 'Evaluation Results'
               are okay, please send this rule
-              <a href="https://languagetool.org/support/" target="_blank">to the LanguageTool developers</a>.</p>
+              <a href="https://github.com/languagetool-org/languagetool/issues" target="_blank">to the LanguageTool developers</a>.</p>
               
               <p>If you just want to use it locally, add it to the <tt>grammar.xml</tt> file of your
               LanguageTool installation and restart LanguageTool.</p>
