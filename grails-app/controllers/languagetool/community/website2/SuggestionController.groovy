@@ -63,34 +63,39 @@ class SuggestionController {
     
     def feed() {
         validatePassword()
-        render(feedType:"rss", feedVersion:"2.0") {
-            title = "LanguageTool Word Suggestions"
-            description = "Words that should be added to LanguageTool's spell dictionary, as suggested by users"
-            link = createLink(controller: 'suggestion', action: 'feed', absolute: true)
-            List suggestions
-            if (params.lang) {
-                suggestions = Suggestion.findAllByLanguageCode(params.lang, [max: 100, sort:'date', order:'desc'])
-            } else {
-                suggestions = Suggestion.findAll([max: 100, sort:'date', order:'desc'])
-            }
-            String xml10pattern = "[^" +
-                "\u0009\r\n" +
-                "\u0020-\uD7FF" +
-                "\uE000-\uFFFD" +
-                "\ud800\udc00-\udbff\udfff" +
-                "]"  // source: http://stackoverflow.com/questions/4237625/removing-invalid-xml-characters-from-a-string-in-java/4237934#4237934
-            suggestions.each { suggestion ->
-                def word = suggestion.word
-                word = word.replaceAll(xml10pattern, "_")
-                if (word != suggestion.word) {
-                    word += " [cleaned for XML]"
-                }
-                entry("${word} - language: ${suggestion.languageCode}, email: ${suggestion.email}") {
-                    publishedDate = suggestion.date
-                    "Language: ${suggestions.languageCode}\n" +
-                        "Word: ${suggestions.word}\n" +
-                        "Email: ${suggestions.email}\n" +
-                        "Date: ${suggestions.date}\n"
+        List suggestions
+        if (params.lang) {
+            suggestions = Suggestion.findAllByLanguageCode(params.lang, [max: 100, sort:'date', order:'desc'])
+        } else {
+            suggestions = Suggestion.findAll([max: 100, sort:'date', order:'desc'])
+        }
+        String xml10pattern = "[^" +
+            "\u0009\r\n" +
+            "\u0020-\uD7FF" +
+            "\uE000-\uFFFD" +
+            "\ud800\udc00-\udbff\udfff" +
+            "]"  // source: http://stackoverflow.com/questions/4237625/removing-invalid-xml-characters-from-a-string-in-java/4237934#4237934
+        def l = createLink(controller: 'suggestion', action: 'feed', absolute: true)
+        render(contentType: "application/rss+xml", encoding: "UTF-8") {
+            rss(version: "2.0") {
+                channel {
+                    title("LanguageTool Word Suggestions")
+                    link(l)
+                    description("Words that maybe should be added to LanguageTool's spell dictionary, as suggested by users")                    
+                    suggestions.each { suggestion ->
+                        def word = suggestion.word
+                        word = word.replaceAll(xml10pattern, "_")
+                        if (word != suggestion.word) {
+                            word += " [cleaned for XML]"
+                        }
+                        item {
+                            title(suggestion.word)
+                            //link(item.link)
+                            description("Word: ${suggestion.word}")
+                            pubDate(suggestion.date)
+                            //guid(item.guid)
+                        }
+                    }
                 }
             }
         }
