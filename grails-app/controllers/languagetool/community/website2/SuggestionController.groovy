@@ -24,6 +24,8 @@ import org.languagetool.languagemodel.LuceneLanguageModel
 import org.languagetool.rules.Rule
 import org.languagetool.*
 import org.languagetool.rules.spelling.SpellingCheckRule
+import java.text.SimpleDateFormat
+import java.util.TimeZone
 
 /**
  * Get user suggestion for words that might be added to the dictionary.
@@ -92,7 +94,7 @@ class SuggestionController {
                             title(suggestion.word)
                             //link(item.link)
                             description("Word: ${suggestion.word}")
-                            pubDate(suggestion.date)
+                            pubDate(formatToRFC2822(suggestion.date))
                             //guid(item.guid)
                         }
                     }
@@ -101,6 +103,12 @@ class SuggestionController {
         }
     }
     
+    private formatToRFC2822(Date date) {
+        def rfc2822Format = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH)
+        rfc2822Format.setTimeZone(TimeZone.getTimeZone("GMT"))
+        return rfc2822Format.format(date)
+    }
+
     private void validatePassword() {
         String password = grailsApplication.config.suggestion.password
         if (!password || password.trim().isEmpty()) {
