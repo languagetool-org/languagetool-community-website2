@@ -48,10 +48,11 @@ grails:
     default:
       codec: html
 dataSource:
-  url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-  driverClassName: org.h2.Driver
-  username: sa
-  password: ''
+  url: 'jdbc:mysql://localhost/ltcommunity?useUnicode=true&characterEncoding=UTF-8&useLegacyDatetimeCode=false&serverTimezone=Europe/Berlin'
+  driverClassName: com.mysql.jdbc.Driver
+  username: TBD
+  password: TBD
+  dialect: org.hibernate.dialect.MySQLDialect
   pooled: true
   jmxExport: true
   dbCreate: update

@@ -70,7 +70,7 @@ dependencies {
     implementation('org.languagetool:language-all:6.6-SNAPSHOT')
     implementation('org.languagetool:languagetool-wikipedia:6.6-SNAPSHOT')
     implementation('org.languagetool:languagetool-http-client:6.6-SNAPSHOT')
-
+    runtimeOnly('mysql:mysql-connector-java:6.0.5')
     // to make auto-reload work:
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
