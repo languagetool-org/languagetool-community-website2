@@ -53,17 +53,4 @@ class RuleEditor2Controller {
         }
     }
     
-    def examples() {
-        Language language = Languages.getLanguageForShortCode(params.lang ? params.lang : "en")
-        def path = "/examples/" + language.getShortCode() + ".txt"
-        InputStream stream = RuleEditor2Controller.class.getResourceAsStream(path)
-        List examples = []
-        if (stream) {
-            examples = IOUtils.readLines(stream)
-            examples = examples.findAll { e -> !e.startsWith("#") && !e.trim().isEmpty() }
-        } else {
-            log.info("No example file found: ${path}")
-        }
-        [examples: examples, language: language, languages: SortedLanguages.get()]
-    }
 }
