@@ -73,7 +73,7 @@ class RuleController {
         if (!selectedRule) {
             log.warn("No rule with id ${params.id}, subId ${params.subId} and language ${langCode}")
             flash.message = "No rule with id ${params.id.encodeAsHTML()}, subId ${params.subId.encodeAsHTML()}"
-            redirect(action:list)
+            redirect(action:'list')
             return
         }
         String textToCheck = ""
