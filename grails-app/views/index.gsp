@@ -9,13 +9,11 @@
 
         <div class="body">
 
-        <g:render template="/grails-app/views/languageSelection"/>
-            
         <g:set var="lang" value="${params.lang ? params.lang : 'en'}"/>
 
         <div class="dialog">
             
-            <p style="margin-bottom: 15px"><g:message code="ltc.home.intro"/></p>
+            <p style="margin-top: 15px; margin-bottom: 15px"><g:message code="ltc.home.intro"/></p>
 
             <h2 class="firstHeadline"><g:link controller="rule" action="list" params="[lang: lang]"><g:message code="ltc.browse.rules"/></g:link></h2>
 
