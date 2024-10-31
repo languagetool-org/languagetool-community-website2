@@ -1,5 +1,4 @@
 <%@page import="org.languagetool.*" %>
-<%@page import="org.hibernate.*" %>
 
 <html>
 <head>
