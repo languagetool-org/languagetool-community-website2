@@ -224,9 +224,6 @@ class RuleEditorController {
 
     private String getEntityDefinitions(Language lang) {
         //String pathTemplate = "/home/dnaber/lt/git/languagetool/languagetool-language-modules/XX/src/main/resources/org/languagetool/rules/XX/grammar.xml"
-        //print(">>>"+grailsApplication)
-        //print(">>>"+grailsApplication.config)
-        print("2>>>"+grailsApplication.config.grammarPathTemplate)
         String pathTemplate = grailsApplication.config.grammarPathTemplate
         String filename = pathTemplate.replaceAll("XX", lang.getShortCode())
         def lines = Files.readAllLines(Paths.get(filename))

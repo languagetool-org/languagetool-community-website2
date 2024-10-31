@@ -15,5 +15,8 @@
     <root level="error">
         <appender-ref ref="STDOUT" />
     </root>
+    <root name="org.languagetool" level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
 
 </configuration>
