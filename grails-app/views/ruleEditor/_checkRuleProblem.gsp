@@ -13,7 +13,7 @@
 
             <ul>
                 <g:each in="${problems}" var="problem">
-                    <li>${problem}</li>
+                    <li>${raw(problem)}</li>
                 </g:each>
                 <li><g:message code="ltc.editor.rule.language.selection" args="${[language.getName().encodeAsHTML()]}"/></li>
             </ul>

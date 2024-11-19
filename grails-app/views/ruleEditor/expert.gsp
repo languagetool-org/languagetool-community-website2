@@ -50,7 +50,7 @@
 
         <div class="body">
 
-            <g:form name="ruleForm" method="post" action="checkRule">
+            <g:form name="ruleForm" method="post" action="checkXml">
 
                 <input type="hidden" id="showMatchesOnly" name="showMatchesOnly" value=""/>
 
@@ -153,6 +153,38 @@
                     });
                     editor.completers = [codeCompleter];
                     editor.focus();
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                        const button = document.getElementById("checkXmlButton");
+                        const form = document.getElementById("ruleForm");
+
+                        button.addEventListener("click", () => {
+                            copyXml();
+                            const xhr = new XMLHttpRequest();
+                            xhr.open(form.method, form.action, true);
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                            xhr.onloadstart = function () {
+                                onLoadingResult();
+                            };
+                            xhr.onload = function () {
+                                if (xhr.status === 200) {
+                                    document.getElementById("checkResult").innerHTML = xhr.responseText;
+                                    onResultComplete();
+                                } else {
+                                    document.getElementById("checkResult").innerHTML = "Error: Unable to process request.";
+                                }
+                            };
+                            xhr.onerror = function () {
+                                document.getElementById("checkResult").innerHTML = "Error: Unable to process request.";
+                            };
+
+                            const formData = new FormData(form);
+                            const params = new URLSearchParams(formData).toString();
+                            xhr.send(params);
+                        });
+                    });
+
                 </script>
 
                 <input id="xml" type="hidden" name="xml" value=""/>
@@ -175,7 +207,10 @@
                                 <input id="stopButton" type="button" value="Stop" style="background-color: orangered;color: white">
                             </g:if>
                             <g:else>
-                            <%--
+                                <button type="button" id="checkXmlButton">
+                                    ${message(code: 'ltc.editor.expert.check.xml')}
+                                </button>
+                                <%--
                                 <g:submitToRemote name="checkXmlButton"
                                                   before="copyXml()"
                                                   onLoading="onLoadingResult()"

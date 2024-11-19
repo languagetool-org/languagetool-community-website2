@@ -6,7 +6,7 @@
         <g:if test="${i < maxMatches}">
 
             <li class="errorList">
-                ${matchInfo.getMessage().replaceAll("<suggestion>", "<span class='correction'>").replaceAll("</suggestion>", "</span>")}
+                ${raw(matchInfo.getMessage().replaceAll("<suggestion>", "<span class='correction'>").replaceAll("</suggestion>", "</span>"))}
 
                 <g:if test="${!hideRuleLink}">
                     <g:set var="langParam" value="${language?.getShortCodeWithCountryAndVariant() ? language.getShortCodeWithCountryAndVariant() : lang}"/>
@@ -29,7 +29,7 @@
                   contextTools.setErrorMarkerEnd("</span>");
                   contextTools.setEscapeHtml(true);
                 %>
-                <span class="exampleSentence">${contextTools.getContext(matchInfo.getFromPos(), matchInfo.getToPos(), textToCheck)}</span>
+                <span class="exampleSentence">${raw(contextTools.getContext(matchInfo.getFromPos(), matchInfo.getToPos(), textToCheck))}</span>
                 <%
                   // this is used by the rule editor to set the 'marker' element in the wrong example sentences: 
                   contextTools.setContextSize(1000);

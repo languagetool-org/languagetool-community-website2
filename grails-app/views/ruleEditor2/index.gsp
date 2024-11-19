@@ -40,7 +40,7 @@
 
   <span style="color: white;float:left">LanguageTool ${JLanguageTool.VERSION} (${JLanguageTool.BUILD_DATE})</span>
   <p style="margin:15px;float:right;width:700px"><a href ng-click="gui.parseXmlDialogShown = true">Parse existing XML</a>
-  <g:link controller="ruleEditor" action="expert">Expert Mode</g:link></p>
+  &middot; <g:link controller="ruleEditor" action="expert">Expert Mode</g:link></p>
   <modal-dialog show='gui.parseXmlDialogShown' dialog-title='Parse Rule XML' ng-cloak>
     <form>
         <b>Note:</b> this feature is still a bit incomplete<br/>
