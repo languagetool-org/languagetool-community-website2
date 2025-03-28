@@ -67,9 +67,9 @@ dependencies {
     testRuntimeOnly("org.seleniumhq.selenium:selenium-safari-driver:4.19.1")
     testImplementation("io.micronaut:micronaut-http-client")
 
-    implementation('org.languagetool:language-all:6.6-SNAPSHOT')
-    implementation('org.languagetool:languagetool-wikipedia:6.6-SNAPSHOT')
-    implementation('org.languagetool:languagetool-http-client:6.6-SNAPSHOT')
+    implementation('org.languagetool:language-all:6.7-SNAPSHOT')
+    implementation('org.languagetool:languagetool-wikipedia:6.7-SNAPSHOT')
+    implementation('org.languagetool:languagetool-http-client:6.7-SNAPSHOT')
     runtimeOnly('mysql:mysql-connector-java:6.0.5')
     // to make auto-reload work:
     developmentOnly("org.springframework.boot:spring-boot-devtools")
